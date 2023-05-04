@@ -16,5 +16,6 @@ export class AppService {
 
   async creatUser(body: CreateUserRequest) {
     this.logger.log('Creating user...', body);
+    this.eventEmitter.emit('user.create',)
   }
 }
