@@ -2,6 +2,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { CreateUserRequest } from './user.dto';
 import { EventEmitter2 } from '@nestjs/event-emitter';
+import { UserCreateEvent } from './createUser.event';
 
 @Injectable()
 export class AppService {
@@ -16,6 +17,7 @@ export class AppService {
 
   async creatUser(body: CreateUserRequest) {
     this.logger.log('Creating user...', body);
-    this.eventEmitter.emit('user.create',)
+    const userId = '123';
+    this.eventEmitter.emit('user.create', new UserCreateEvent(userId, body.email))
   }
 }
