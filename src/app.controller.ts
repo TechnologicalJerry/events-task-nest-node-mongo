@@ -14,6 +14,6 @@ export class AppController {
 
   @Post()
   async createUser(@Body() body: CreateUserRequest): Promise<void> {
-
+    return this.appService.creatUser(body);
   }
 }
