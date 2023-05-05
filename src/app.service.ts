@@ -10,7 +10,7 @@ export class AppService {
 
   constructor(
     private readonly eventEmitter: EventEmitter2,
-    private schedularRegistry: SchedulerRegistry
+    private schedulerRegistry: SchedulerRegistry
   ) { }
 
   private readonly logger = new Logger(AppService.name);
@@ -26,7 +26,11 @@ export class AppService {
     const establishWebSocketsTimeout = setTimeout(
       () => this.establishWebSocketsConnection(userId),
       5000,
-    )
+    );
+    this.schedulerRegistry.addTimeout(
+      `${userId}_establish_ws`,
+      establishWebSocketsTimeout,
+    );
   }
 
   private establishWebSocketsConnection(userId: string) {
