@@ -3,12 +3,15 @@ import { Injectable, Logger } from '@nestjs/common';
 import { CreateUserRequest } from './user.dto';
 import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
 import { UserCreateEvent } from './createUser.event';
-import { Cron, CronExpression } from '@nestjs/schedule';
+import { Cron, CronExpression, SchedulerRegistry } from '@nestjs/schedule';
 
 @Injectable()
 export class AppService {
 
-  constructor(private readonly eventEmitter: EventEmitter2) { }
+  constructor(
+    private readonly eventEmitter: EventEmitter2,
+    private schedularRegistry: SchedulerRegistry
+  ) { }
 
   private readonly logger = new Logger(AppService.name);
 
