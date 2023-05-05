@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Injectable, Logger } from '@nestjs/common';
 import { CreateUserRequest } from './user.dto';
 import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
