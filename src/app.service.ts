@@ -37,7 +37,7 @@ export class AppService {
     this.logger.log('Welcome Gift Sent:::', payload.email);
   }
 
-  @Cron(CronExpression.EVERY_10_SECONDS)
+  @Cron(CronExpression.EVERY_10_SECONDS, { name: 'delete_expire_user' })
   deleteExpireUser() {
     this.logger.log('Delete Expire User:::');
   }
