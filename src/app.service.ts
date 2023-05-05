@@ -3,6 +3,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { CreateUserRequest } from './user.dto';
 import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
 import { UserCreateEvent } from './createUser.event';
+import { Cron, CronExpression } from '@nestjs/schedule';
 
 @Injectable()
 export class AppService {
@@ -31,5 +32,10 @@ export class AppService {
     this.logger.log('Sending Welcome Gift:::', payload.email);
     await new Promise<void>((resolve) => setTimeout(() => resolve(), 3000));
     this.logger.log('Welcome Gift Sent:::', payload.email);
+  }
+
+  @Cron(CronExpression.EVERY_10_SECONDS)
+  deleteExpireUser() {
+    this.logger.log('Delete Expire User:::');
   }
 }
