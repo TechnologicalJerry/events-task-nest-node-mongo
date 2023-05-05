@@ -23,6 +23,14 @@ export class AppService {
     this.logger.log('Creating user...', body);
     const userId = '123';
     this.eventEmitter.emit('user.create', new UserCreateEvent(userId, body.email))
+    const establishWebSocketsTimeout = setTimeout(
+      () => this.establishWebSocketsConnection(userId),
+      5000,
+    )
+  }
+
+  private establishWebSocketsConnection(userId: string) {
+    this.logger.log('Establishing WS connection with user...', userId);
   }
 
   @OnEvent('user.created')
